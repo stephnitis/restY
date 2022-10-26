@@ -19,8 +19,15 @@ form {
         color: rgb(222, 195, 242);
         border-radius: 10px;
 
-        &:hover, &.active {
-          
+        &:focus {
+          background: rgb(183, 115, 231);
+          color: #eee;
+        }
+        &:hover {
+          background: rgb(183, 115, 231);
+          color: #eee;
+        }
+        &:active {
           background: rgb(183, 115, 231);
           color: #eee;
         }
