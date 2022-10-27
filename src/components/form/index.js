@@ -7,12 +7,12 @@ const Form = (props) => {
 
   const [method, setMethod] = useState('GET');
   const [apiUrl, setApiUrl] = useState('');
-  const [json, setJson] = useState('');
+  const [data, setData] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
     // let apiUrl = e.target.url.value;
-    props.handleApiCall(apiUrl, method, json);
+    props.handleApiCall(apiUrl, method, data);
   };
 
   return (
@@ -20,11 +20,11 @@ const Form = (props) => {
       <form onSubmit={handleSubmit}>
         <label >
           <span>URL: </span>
-          <input onChange={(e) => setApiUrl(e.target.value)} type='text' />
+          <input data-testid="inputUrl" onChange={(e) => setApiUrl(e.target.value)} type='text' />
           <button type="submit">GO!</button>
         </label>
-        <textarea
-          onChange={(e) => setJson(e.target.value)}
+        <textarea data-testid="form-textarea"
+          onChange={(e) => setData(e.target.value)}
           type='text'
           placeholder='Enter JSON'
           />

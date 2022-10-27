@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -33,6 +33,13 @@ const App = () => {
     console.log(data);
     setRequestParams(params);
   }
+
+  // useEffect(()=> {
+  //   //axios call
+  //   console.log('my state ----->', requestParams);
+  //   axios(requestParams)
+  //     .then(response => setData(response.data.results))
+  // }, [requestParams]);
 
     return (
       <>
