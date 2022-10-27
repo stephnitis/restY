@@ -13,12 +13,20 @@
 
 Stay tuned for future updates!
 
+## Lab 27
+
 ![lab 27 uml](./assets/Lab%2027.png)
 
 - We have added functionality!
 - Users please input an API URL of your choosing into the text field
 - Select any of the rest methods below
 - Press GO! and see the results displayed (API functionality permitting)
+
+## Lab 28
+
+- We can now target the headers in our API data!
+- We also have a text area to input JSON data for your PUT & POST requests!
+- All responses are formatted in pretty pretty JSON too, for your viewing pleasure
 
 ### Links
 
