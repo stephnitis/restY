@@ -13,6 +13,7 @@ const Form = (props) => {
     e.preventDefault();
     // let apiUrl = e.target.url.value;
     props.handleApiCall(apiUrl, method, json);
+    props.addHistory(apiUrl, method)
   };
 
   return (
