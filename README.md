@@ -28,6 +28,18 @@ Stay tuned for future updates!
 - We also have a text area to input JSON data for your PUT & POST requests!
 - All responses are formatted in pretty pretty JSON too, for your viewing pleasure
 
+## Lab 29
+
+### Branch: reducer-hook
+
+![uml for lab29](./assets/Lab%2029.png)
+
+- All component state managements use derived state from useReducer with reducer function and initial state
+- `<App/>` uses a reducer to store and manage all application state (loading, results and history)
+  - Adding to history array in stte after every api call (method, url, results (json))'
+- `<History />` iterates the history array in state and shows the previous API calls
+  - When one is clicked, it shows the results component, rendered based upon whatever is in state
+
 ### Links
 
 - [Sandbox](https://codesandbox.io/p/github/stephnitis/resty/main?file=%2Fsrc%2FApp.js&workspace=%257B%2522activeFileId%2522%253A%2522cl9ncr70d000clrjmf6crhel3%2522%252C%2522openFiles%2522%253A%255B%2522%252FREADME.md%2522%255D%252C%2522sidebarPanel%2522%253A%2522EXPLORER%2522%252C%2522gitSidebarPanel%2522%253A%2522COMMIT%2522%252C%2522sidekickItems%2522%253A%255B%257B%2522key%2522%253A%2522cl9ncs38l000k3b6h1z7e848g%2522%252C%2522type%2522%253A%2522PROJECT_SETUP%2522%252C%2522isMinimized%2522%253Afalse%257D%252C%257B%2522type%2522%253A%2522PREVIEW%2522%252C%2522taskId%2522%253A%2522start%2522%252C%2522port%2522%253A3000%252C%2522key%2522%253A%2522cl9ncs38l000l3b6hhdlprzgf%2522%252C%2522isMinimized%2522%253Afalse%257D%255D%257D)
