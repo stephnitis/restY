@@ -1,62 +1,64 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import axios from 'axios';
-import {
-  useState,
-  // useReducer 
-} from 'react';
-
+import {useState} from 'react';
 import './app.scss';
-
 import Header from './components/header';
 import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
-
+import { ApiReducer } from './hooks/apiReducer';
 // import History from './components/history';
 
-// export const initialHistory = {
-//   name: 'API Call Log',
-//   calls: [],
-// }
-
-// export const historyReducer = (state, action) => {
-
-//   switch(action.type){
-//     case 'ADD':
-//       return{...state, calls: [...state.calls, action.payload]}
-
-//   default:
-//     return state;
-//   }
-// }
+export const initialState = {
+  name: 'API Call Log',
+  data: null,
+  headers: null,
+  requestParams: {},
+  callLog: [],
+}
 
 const App = () => {
 
-  const [data, setData] = useState(null);
+  const [state, dispatch] = useReducer(ApiReducer, initialState);
+
   const [requestParams, setRequestParams] = useState({});
-  const [headers, setHeaders] = useState(null);
+
+  const {callLog} = state;
 
   const callApi = async (requestParams) => {
     setRequestParams(requestParams);
-    console.log('from App ------>', requestParams.method, requestParams.url);
   }
 
+  // const setData = (payload) => {
+  //   let action = {
+  //     type: 'set_data',
+  //     payload: payload,
+  //   }
+  //   dispatch(action)
+  // };
+
+  const setData = (payload) => dispatch({ type: 'data', payload});
+
+  const setHeaders = (payload) => dispatch({ type: 'headers', payload});
+
+  const setHistory = (payload) => dispatch({ 
+    type: 'callLog', 
+    payload: [...callLog, payload]
+  });
 
   useEffect(() => {
-    let getData = async () => {
-
+    let getData = async () => {      
       if (requestParams.apiUrl) {
-
         let response = await axios({
           method: requestParams.method,
           url: requestParams.apiUrl,
         })
         setData(response.data.results);
-        console.log(setData(response.data.results));
         setHeaders(response.headers);
+        setHistory(requestParams.apiUrl, requestParams.apiUrl);
+        console.log(callLog);
       }
     }
-
     getData();
   }, [requestParams]);
 
@@ -64,11 +66,12 @@ const App = () => {
     <>
       <Header />
       <div>Request Method: {requestParams.method}</div>
-      <div>URL: {requestParams.url}</div>
+      <div>URL: {requestParams.apiUrl}</div>
       <Form callApi={callApi} />
+      {/* <History history={state.calls} /> */}
       <Results
-        data={data}
-        headers={headers}
+        data={state.data}
+        headers={state.headers}
       />
       <Footer />
     </>

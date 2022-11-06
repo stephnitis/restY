@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import './form.scss';
 
+
 const Form = (props) => {
 
   const [method, setMethod] = useState('GET');
