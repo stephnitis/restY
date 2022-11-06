@@ -23,10 +23,14 @@ const App = () => {
 
   const [requestParams, setRequestParams] = useState({});
 
-  const {callLog} = state;
+  const setHistory = (payload) => dispatch({ 
+    type: 'callLog', 
+    payload: [...state.callLog, payload]
+  });
 
   const callApi = async (requestParams) => {
     setRequestParams(requestParams);
+    setHistory([requestParams.method, requestParams.apiUrl])
   }
 
   // const setData = (payload) => {
@@ -41,10 +45,6 @@ const App = () => {
 
   const setHeaders = (payload) => dispatch({ type: 'headers', payload});
 
-  const setHistory = (payload) => dispatch({ 
-    type: 'callLog', 
-    payload: [...callLog, payload]
-  });
 
   useEffect(() => {
     let getData = async () => {      
@@ -54,9 +54,8 @@ const App = () => {
           url: requestParams.apiUrl,
         })
         setData(response.data.results);
-        setHeaders(response.headers);
-        setHistory(requestParams.apiUrl, requestParams.apiUrl);
-        console.log(callLog);
+        setHeaders(response.headers);        
+        console.log(state.callLog);
       }
     }
     getData();
@@ -68,7 +67,7 @@ const App = () => {
       <div>Request Method: {requestParams.method}</div>
       <div>URL: {requestParams.apiUrl}</div>
       <Form callApi={callApi} />
-      {/* <History history={state.calls} /> */}
+      {/* <History history={state.callLog} /> */}
       <Results
         data={state.data}
         headers={state.headers}
